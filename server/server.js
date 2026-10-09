@@ -4,7 +4,6 @@ const app = express();
 const mongoose = require("mongoose");
 const Student = require("./models/Student");
 
-
 require("dotenv").config();
 
 app.use(cors());
@@ -24,14 +23,13 @@ app.get("/", (req, res) =>{
     res.send("Server is running!");
 });
 
-// read students from the database
+// read students from the server
 app.get("/students", async (req, res) => {
     const students = await Student.find();
-    
     res.json(students);
 });
 
-//   create student to the database
+//   create student to the server
 app.post("/students", async (req, res) => {
     try {
         const {name, course, age} = req.body;
@@ -48,7 +46,7 @@ app.post("/students", async (req, res) => {
     }
 });
 
-//edit student from the database
+//edit student from the server
 app.put("/students/:id", async (req, res) => {
     try {
         const student = await Student.findByIdAndUpdate(
@@ -61,8 +59,8 @@ app.put("/students/:id", async (req, res) => {
         res.status(400).json({ error: error.message });
     }
     });
-
-//delete student from the database
+ 
+//delete student from the server
 app.delete("/students/:id", async (req, res) => {
     try {
         const student = await Student.findByIdAndDelete(req.params.id);

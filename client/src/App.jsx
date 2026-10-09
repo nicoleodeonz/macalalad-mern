@@ -10,7 +10,7 @@ function App() {
   const [age, setAge] = useState('');
   const [editId, setEditId] = useState(null);
 
-  //read students from the database
+  //read students from the server
   const getStudents = () => {
     axios
       .get('http://localhost:5000/students')
@@ -22,7 +22,7 @@ function App() {
     getStudents();
   }, []);
 
-  //add student to the database
+  //add student to the server
   const addStudent = () => {
     axios 
       .post('http://localhost:5000/students', {
@@ -42,7 +42,7 @@ function App() {
     });
   };
 
-  //delete student from the database
+  //delete student from the server
   const deleteStudent = (id) => {
     axios
       .delete(`http://localhost:5000/students/${id}`)    
@@ -54,7 +54,7 @@ function App() {
       });
   };
 
-  //edit student on the database
+  //edit student on the server
   const editStudent = (student) => {
     setEditId(student._id);
     setName(student.name);
@@ -62,7 +62,7 @@ function App() {
     setAge(student.age);
   };
 
-  //update student on the v
+  //update student on the server
   const updateStudent = () => {
     axios
       .put(`http://localhost:5000/students/${editId}`, {
@@ -89,26 +89,26 @@ function App() {
         <h1>Student Management System</h1>
         <h2>Add Student</h2>
 
-        <input
-          placeholder='Name'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+        <input 
+          placeholder='Name' 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
         />
         
         <br/><br/>
 
-        <input
-          placeholder='Course'
-          value={course}
-          onChange={(e) => setCourse(e.target.value)}
+        <input 
+          placeholder='Course' 
+          value={course} 
+          onChange={(e) => setCourse(e.target.value)} 
         />
         
         <br/><br/>
 
-        <input
-          placeholder='Age'
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
+        <input 
+          placeholder='Age' 
+          value={age} 
+          onChange={(e) => setAge(e.target.value)} 
         />
         
         <br/><br/>
@@ -125,7 +125,7 @@ function App() {
             <p>Name: {student.name}</p>
             <p>Course: {student.course}</p>
             <p>Age: {student.age}</p>
-            <button onClick={() => editStudent(student)}>Edit</button> 
+            <button onClick={() => editStudent(student)}>Edit</button>  
             <button onClick={() => deleteStudent(student._id)}>Delete</button>
           </div>
         ))}
