@@ -10,7 +10,7 @@ function App() {
   const [age, setAge] = useState('');
   const [editId, setEditId] = useState(null);
 
-  //read students from the server
+  //read students from the database
   const getStudents = () => {
     axios
       .get('http://localhost:5000/students')
@@ -22,7 +22,7 @@ function App() {
     getStudents();
   }, []);
 
-  //add student to the server
+  //add student to the database
   const addStudent = () => {
     axios 
       .post('http://localhost:5000/students', {
@@ -42,7 +42,7 @@ function App() {
     });
   };
 
-  //delete student from the server
+  //delete student from the database
   const deleteStudent = (id) => {
     axios
       .delete(`http://localhost:5000/students/${id}`)    
@@ -54,7 +54,7 @@ function App() {
       });
   };
 
-  //edit student on the server
+  //edit student on the database
   const editStudent = (student) => {
     setEditId(student._id);
     setName(student.name);
@@ -62,7 +62,7 @@ function App() {
     setAge(student.age);
   };
 
-  //update student on the server
+  //update student on the database
   const updateStudent = () => {
     axios
       .put(`http://localhost:5000/students/${editId}`, {

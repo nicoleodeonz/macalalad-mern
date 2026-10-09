@@ -23,13 +23,13 @@ app.get("/", (req, res) =>{
     res.send("Server is running!");
 });
 
-// read students from the server
+// read students from the database
 app.get("/students", async (req, res) => {
     const students = await Student.find();
     res.json(students);
 });
 
-//   create student to the server
+//   create student to the database
 app.post("/students", async (req, res) => {
     try {
         const {name, course, age} = req.body;
@@ -46,7 +46,7 @@ app.post("/students", async (req, res) => {
     }
 });
 
-//edit student from the server
+//edit student from the database
 app.put("/students/:id", async (req, res) => {
     try {
         const student = await Student.findByIdAndUpdate(
@@ -60,7 +60,7 @@ app.put("/students/:id", async (req, res) => {
     }
     });
  
-//delete student from the server
+//delete student from the database
 app.delete("/students/:id", async (req, res) => {
     try {
         const student = await Student.findByIdAndDelete(req.params.id);
